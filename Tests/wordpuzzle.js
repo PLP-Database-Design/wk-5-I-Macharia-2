@@ -193,6 +193,8 @@ function resetGame(){
     hintEl.textContent = "";
     guessInput.value = "";
     guessInput.focus();
+
+    newPuzzle();
 }
 
 // ---------------------------
@@ -213,3 +215,31 @@ document.addEventListener('DOMContentLoaded', ()=>{
     newPuzzle();
     guessInput.focus();
 });
+
+// ---------------------------
+// Exports for testing
+// ---------------------------
+module.exports = {
+    scrambleWord,
+    showHint,
+    checkGuess,
+    newPuzzle,
+    resetGame,
+    puzzlesSolved,
+    getLeaderboard,
+    setLeaderboard,
+    updateLeaderboard,
+    wordBank,
+    // State (for testing)
+    get score(){ return score; },
+    set score(v){ score = v; },
+    get hintUsed(){ return hintUsed; },
+    set hintUsed(v){ hintUsed = v; },
+    get currentHint(){ return currentHint; },
+    set currentHint(v){ currentHint = v; },
+    get puzzlesSolved(){ return puzzlesSolved; },
+    set puzzlesSolved(v){ puzzlesSolved = v; },
+};
+// -------------------------------------------
+// End of file wordpuzzle.js
+// -------------------------------------------  
