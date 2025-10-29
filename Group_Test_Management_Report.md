@@ -157,7 +157,7 @@ R-01, R-02, R-03, R-04, R-05 <br>
 
 | Name | Role | Initials | Date |
 |------|------|-----------|------|
-|Ian Macharia | Test Manager | | |
+|Ian Macharia | Test Manager |MIG |29-10-25 |
 |Mark Mwangi | Risk Analyst | | |
 |Shanice Chepkwony | Test Executor | | |
 
