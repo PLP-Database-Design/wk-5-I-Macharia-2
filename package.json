@@ -1,0 +1,25 @@
+{
+  "name": "wordpuzzle_test",
+  "version": "1.0.0",
+  "description": "Test configuration for the word puzzle test.",
+  "homepage": "https://github.com/PLP-Database-Design/wk-5-I-Macharia-2#readme",
+  "bugs": {
+    "url": "https://github.com/PLP-Database-Design/wk-5-I-Macharia-2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PLP-Database-Design/wk-5-I-Macharia-2.git"
+  },
+  "license": "ISC",
+  "author": "I-Macharia",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "jest": "30.2.0",
+    "jest-environment-jsdom": "30.2.0"
+  }
+}
