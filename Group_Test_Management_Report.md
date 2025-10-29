@@ -61,10 +61,10 @@ and `reset`; Does the `Leaderboard` keep score as advertised
 
 | Phase | Planned Duration | Actual Duration | Status |
 |-------|------------------|-----------------|--------|
-| Phase One: Identify Resources and allocate duties.|Sunday 26th OCT,2025, between 2000 - 2100 |Sunday 26th OCT,2025, between 2100 - 2200|Completed |
-| Phase Two: Review Test plan and risk analysis|Monday 27th OCT,2025, between 1300 - 1400 |Monday 27th OCT,2025,between 2100 - 2130|Completed |
-| Phase Three: Design Test suites and execution|Monday 27th OCT,2025, between 2000 - 2100 |Monday 27th OCT,2025, between 2130 - 2200 |Completed |
-| Phase Four: Post-Mortem and Test Exit criteria met|Tuesday 28th OCT,2025, between 1300 - 1400 || |
+| Phase One: Identify Resources and allocate duties.|Sunday 26th OCT,2025, between 2000 - 2100 |Sunday 26th OCT,2025, between 2100 - 2200|✅ Completed |
+| Phase Two: Review Test plan and risk analysis|Monday 27th OCT,2025, between 1300 - 1400 |Monday 27th OCT,2025,between 2100 - 2130|✅ Completed |
+| Phase Three: Design Test suites and execution|Monday 27th OCT,2025, between 2000 - 2100 |Monday 27th OCT,2025, between 2130 - 2200 |✅ Completed |
+| Phase Four: Post-Mortem and Test Exit criteria met|Tuesday 28th OCT,2025, between 1300 - 1400 |Entry Criteria not met |  ❌ Deferred|
 
 ## Risk Analysis
 A risk analysis was performed on the new features to identify potential failures. Risks are rated on **Likelihood (L)** and **Impact (I)** . **Priority (P)** is L * I.
@@ -96,21 +96,21 @@ R-01, R-02, R-03, R-04, R-05 <br>
 | ID | Feature | Objective | Expected Result | Actual Result | Status | Risk Link |
 |----|----------|------------|-----------------|----------------|---------|------------|
 | **TC-01** | Bonus Round | Risk-Based (R-01 High): Validate score doubling occurs after the points for the 3rd puzzle are added. | Solve 3 puzzles (10 pts each). Score after puzzle 1: 10. After puzzle 2: 20. After puzzle 3 (Bonus): (20+10)×2=60. |  |  | R-01 |
-| **TC-02** | Reset Game | Risk-Based (R-02 High): Verify that clicking "Reset" leaves the game in an unplayable "limbo" state. | Click "Reset Game". Actual Result: Score is 0, Solved is 0. Scrambled word/hint area is blank. Expected Failure: The user must also click "New Puzzle" to start a game. |  |  ![Missing requirement.](Tests/images/reset_missing_fn.png)| R-02 |
-| **TC-03** | Leaderboard | Risk-Based (R-03 High): Verify data persistence of the leaderboard in Incognito/Private mode. | In Chrome Incognito, achieve a score of 10. Close and reopen a new Incognito window. The score (10) should not be present on the leaderboard. |  |  | R-03 |
-| **TC-04** | Leaderboard | Risk-Based (R-04 High): Validate boundary logic: only top 3 scores are kept, and a new high score replaces the lowest of the 3. | Enter scores: 10, 20, 30. Leaderboard: 30, 20, 10. Enter score 40. Leaderboard: 40, 30, 20 (10 is removed). Enter score 5. Leaderboard: 40, 30, 20 (5 is ignored). |  |  | R-04 |
+| **TC-02** | Reset Game | Risk-Based (R-02 High): Verify that clicking "Reset" leaves the game in an unplayable "limbo" state. | Click "Reset Game". Actual Result: Score is 0, Solved is 0. Scrambled word/hint area is blank. Expected Failure: The user must also click "New Puzzle" to start a game. | Tests pass with `scrambled-word` set to `""` meaning it expects the puzzle to be empty.  | ![Failed Test](Tests/images/failed_resetGame.png) ![Missing requirement.](Tests/images/reset_missing_fn.png)| R-02 |
+| **TC-03** | Leaderboard | Risk-Based (R-03 High): Verify data persistence of the leaderboard in Incognito/Private mode. | In Chrome Incognito, achieve a score of 10. Close and reopen a new Incognito window. The score (10) should not be present on the leaderboard. |  |![Before-play](Tests/images/Before-play.png),![after_play](Tests/images/after_play.png), ![new-window](Tests/images/new-window.png)  | R-03 |
+| **TC-04** | Leaderboard | Risk-Based (R-04 High): Validate boundary logic: only top 3 scores are kept, and a new high score replaces the lowest of the 3. | Enter scores: 10, 20, 30. Leaderboard: 30, 20, 10. Enter score 40. Leaderboard: 40, 30, 20 (10 is removed). Enter score 5. Leaderboard: 40, 30, 20 (5 is ignored). |  | ![first-three](Tests/images/first-three.png), ![lowest-removed](Tests/images/lowest-removed.png) | **R-04** |
 | **TC-05** | Leaderboard | Risk-Based (R-05 Medium): Verify scores are sorted numerically in descending order, not alphabetically. | Enter scores 100, 5, and 20. The leaderboard must display: 100, 20, 5. (Alphabetical would be: 100, 20, 5 or 5, 20, 100 if the logic fails to compare number strings correctly). |  |  | R-05 |
 | **TC-06** | Game Core | Negative Test: Submit a guess with leading/trailing whitespace. | Enter guess ' word ' (with spaces) for the word word. The guess should be correctly validated after trimming, resulting in a Correct! message and score update. |  |  |  |
 | **TC-07** | Game Core | Negative Test: Submit an incorrect guess when a puzzle is active. | Enter an incorrect word (e.g., 'table') when a puzzle is displayed. Score and solved count must remain unchanged. Message: "Incorrect, try again!" and input field is selected for re-entry. |  |  |  |
 | **TC-08** | Usability | Usability Test: Confirm keyboard shortcut and input focus behavior for efficient play. | On page load, the input field should automatically gain focus. Hitting the Enter key while the input field is focused should trigger the checkGuess function. |  |  |  |
-| **TC-09** | Responsiveness | Responsiveness Test: Confirm thhe website behaves as expected  acrross different screen sizes. | The UI should still display both game section and leaderboard in the expected behavior irregardless of the screen size. |  |  |  |
+| **TC-09** | Responsiveness | Responsiveness Test: Confirm thhe website behaves as expected  across different screen sizes. | The UI should still display both game section and leaderboard in the expected behavior irregardless of the screen size. |  |  |  |
 
 
 ## Defects
 
 | ID | Issue Title | Severity | Risk ID | Status | GitHub Link |
 |----|-------------|----------|---------|--------|-------------|
-| |There is no call to `newPuzzle()` inside this function.  ||**TC-02** - **R-02** | | |
+|Bug-01 |There is no call to `newPuzzle()` inside this function.  ||**TC-02** - **R-02** |![resetGame-test](Tests/images/resetGame-test.png) |[Bug-01-link](https://github.com/PLP-Database-Design/wk-5-I-Macharia-2/issues/2) |
 | | | | | | |
 | | | | | | |
 | | | | | | |
@@ -137,17 +137,17 @@ R-01, R-02, R-03, R-04, R-05 <br>
 |Phase One:|Identify Resources and allocate duties.|All duties allocated and testing team is aligned | Time to meet had to be moved. |Ian Macharia |
 |Phase Two:|Review Test plan and risk analysis |Testers were not available at allocated time. |**(DEFERRED)** Time to meet had to be moved. |Ian Macharia & Mark Mwangi |
 |Phase Three:|Design Test suites and execution | All testers are available and testing started on time. |Risk analysis was accpeted and test cases approved for development and execution. | Shanice Chepkwony, Ian Macharia & Mark Mwangi |
-|Phase Four:|Post-Mortem and Test Exit criteria met | | | |
+|Phase Four:|Post-Mortem and Test Exit criteria met |Actual entry criteria was not met |Test design approval was deferred | Shanice Chepkwony, Ian Macharia & Mark Mwangi|
 
 **Progress Tracking Method:**  
 **Change Control Notes:**
 
 ## Lessons Learned
 
-- Most Defect Prone Feature: 
+- Most Defect Prone Feature: Reset Game function 
 - Risk Analysis Impact: 
-- Team Communication Effectiveness: 
-- Improvements for Next Cycle: 
+- Team Communication Effectiveness: Needs Improvement. Proper scheduling and strict adherance to time
+- Improvements for Next Cycle: Proper scheduling using a project board.
 
 ## Attachments
 
@@ -163,7 +163,7 @@ R-01, R-02, R-03, R-04, R-05 <br>
 
 ## Overall Summary
 
-**Statement:** 
+**Statement:**  Tests was Deferred since entry criteria for Phase four was not met. **TC-03** and **TC-04** had been conducted during risk analysis approval.
 
-**Test Status:** ☐ Completed / ☐ In Progress / ☐ Deferred
+**Test Status:** ☐ Completed / ☐ In Progress / ❌ Deferred
 

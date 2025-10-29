@@ -194,7 +194,7 @@ function resetGame(){
     guessInput.value = "";
     guessInput.focus();
 
-    newPuzzle();
+    // newPuzzle();
 }
 
 // ---------------------------

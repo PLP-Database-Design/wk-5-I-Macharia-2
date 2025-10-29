@@ -96,46 +96,46 @@ describe("resetGame()", () => {
         expect(Script.puzzlesSolved).toBe(0);
         expect(Script.hintUsed).toBe(false);
     });
-    // test("updates DOM elements accordingly", () => {
-    //     Script.resetGame();
-    //     expect(document.getElementById('score').textContent).toBe('0');
-    //     expect(document.getElementById('solved').textContent).toBe('0');
-    //     expect(document.getElementById('message').textContent).toBe('Game reset!');
-    //     expect(document.getElementById('message').className).toBe('success');
-    //     expect(document.getElementById('scrambled-word').textContent).toBe('');
-    //     expect(document.getElementById('hint').textContent).toBe('');
-    //     expect(document.getElementById('guess-input').value).toBe('');
+    test("updates DOM elements accordingly", () => {
+        Script.resetGame();
+        expect(document.getElementById('score').textContent).toBe('0');
+        expect(document.getElementById('solved').textContent).toBe('0');
+        expect(document.getElementById('message').textContent).toBe('Game reset!');
+        expect(document.getElementById('message').className).toBe('success');
+        expect(document.getElementById('scrambled-word').textContent).toBe('');
+        expect(document.getElementById('hint').textContent).toBe('');
+        expect(document.getElementById('guess-input').value).toBe('');
 
-    // });
+    });
 
 
 // Test New puzzle is triggered after reset Game is triggered
-    test("triggers new puzzle setup", async () => {
-        const newPuzzleSpy = jest.spyOn(Script, 'newPuzzle');
+    // test("triggers new puzzle setup", async () => {
+    //     const newPuzzleSpy = jest.spyOn(Script, 'newPuzzle');
 
-        Script.resetGame();
+    //     Script.resetGame();
 
-        await waitFor(() => {
-            expect(newPuzzleSpy).toHaveBeenCalledTimes(1);
-        });
+    //     await waitFor(() => {
+    //         expect(newPuzzleSpy).toHaveBeenCalledTimes(1);
+    //     });
 
-        newPuzzleSpy.mockRestore();
-    });
+    //     newPuzzleSpy.mockRestore();
+    // });
 
-    test("updates DOM elements accordingly", () => {
-        Script.resetGame();
+    // test("updates DOM elements accordingly", () => {
+    //     Script.resetGame();
 
-        expect(document.getElementById('score').textContent).toBe('0');
-        expect(document.getElementById('solved').textContent).toBe('0');
+    //     expect(document.getElementById('score').textContent).toBe('0');
+    //     expect(document.getElementById('solved').textContent).toBe('0');
 
-        // New puzzle means scrambled word should not be empty
-        expect(document.getElementById('scrambled-word').textContent)
-            .not.toBe("");
+    //     // New puzzle means scrambled word should not be empty
+    //     expect(document.getElementById('scrambled-word').textContent)
+    //         .not.toBe("");
 
-        // Hint always starts empty
-        expect(document.getElementById('hint').textContent).toBe("");
+    //     // Hint always starts empty
+    //     expect(document.getElementById('hint').textContent).toBe("");
 
-        // Input cleared
-        expect(document.getElementById('guess-input').value).toBe("");
-    });
+    //     // Input cleared
+    //     expect(document.getElementById('guess-input').value).toBe("");
+    // });
 });
